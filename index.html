@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Priority Chauffers provides local taxi journeys, airport transfers and private hire bookings across London.">
+  <title>Priority Chauffers | Taxi & Private Hire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Urbanist:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --surface: #fff;
+      --surface2: #f1ede5;
+      --text: #55534e;
+      --muted: #6b665d;
+      --line: #d8d2c7;
+      --divider: #e4dfd6;
+      --primary: #101828;
+      --accent: #c7942f;
+      --accent-soft: #f5e4bf;
+      --inverse: #fcfbf7;
+      --radius-md: .8rem;
+      --radius-xl: 1.5rem;
+      --full: 9999px;
+      --shadow: 0 10px 24px rgba(17, 15, 12, .06);
+      --body: 'Manrope', system-ui, sans-serif;
+      --display: 'Urbanist', system-ui, sans-serif;
+      --content: 1180px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #151412;
+      --surface: #1d1b18;
+      --surface2: #26231f;
+      --text: #efede8;
+      --muted: #c6c0b5;
+      --line: #36312c;
+      --divider: #2c2925;
+      --primary: #f1efe9;
+      --accent: #dfb457;
+      --accent-soft: #392f1f;
+      --inverse: #151412;
+      --shadow: 0 10px 24px rgba(0, 0, 0, .24);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--body);
+      font-size: clamp(1rem, .95rem + .25vw, 1.125rem);
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--content));
+      margin-inline: auto;
+    }
+
+    .skip {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .skip:focus {
+      left: 1rem;
+      top: 1rem;
+      padding: .75rem 1rem;
+      background: var(--surface);
+      z-index: 1000;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), #2d3748);
+      color: #fff;
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-mark svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+    }
+
+    .brand-copy span {
+      display: block;
+      font-size: .75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .nav a {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--text);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: var(--full);
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+
+    .quick-call {
+      padding: .8rem 1rem;
+      border-radius: var(--full);
+      background: var(--primary);
+      color: var(--inverse);
+      font-size: .95rem;
+      font-weight: 800;
+    }
+
+    .hero {
+      padding: clamp(4rem, 8vw, 7rem) 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 10, 18, 0.88) 0%,
+          rgba(5, 10, 18, 0.68) 48%,
+          rgba(5, 10, 18, 0.35) 100%
+        ),
+        url("https://images3.alphacoders.com/126/thumb-1920-1267615.jpg") center / cover no-repeat;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .reviews-section {
+      background:
+      linear-gradient(
+        135deg,
+        rgba(16, 24, 40, 0.92),
+        rgba(16, 24, 40, 0.72)
+      ),
+      url("https://images6.alphacoders.com/984/thumb-1920-984378.jpg") center / cover no-repeat;
+      }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: .42rem .8rem;
+      border-radius: var(--full);
+      background: var(--accent-soft);
+      font-size: .75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--display);
+      line-height: 1.08;
+      margin: 0 0 .75rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 1.3rem + 2.8vw, 3.8rem);
+      max-width: 11ch;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    .lead {
+      max-width: 58ch;
+      color: var(--muted);
+    }
+
+    .hero-actions,
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: .9rem 1.2rem;
+      border-radius: var(--full);
+      font-size: .95rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--inverse);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      border-color: var(--line);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #241a08;
+    }
+
+    .panel,
+    .service-card,
+    .review-card,
+    .booking-card,
+    .contact-card,
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .panel {
+      padding: 1.25rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      padding: 1rem;
+      background: var(--surface2);
+      border-radius: var(--radius-md);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.4rem;
+    }
+
+    .stat span {
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    .section {
+      padding: clamp(3.5rem, 7vw, 6rem) 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .services-grid,
+    .reviews-grid,
+    .contact-grid,
+    .about-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .service-card {
+      padding: 1.4rem;
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .about-visual {
+       min-height: 420px;
+        padding: 1.5rem;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 1rem;
+
+        color: #fff;
+        border-radius: var(--radius-xl);
+
+        background:
+          linear-gradient(
+            160deg,
+            rgba(13, 20, 34, 0.88),
+            rgba(37, 50, 70, 0.68)
+          ),
+          url("https://images5.alphacoders.com/121/thumb-1920-1211652.jpg") center / cover no-repeat;
+      }
+
+    .badge-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: .55rem .85rem;
+      border-radius: var(--full);
+      background: #ffffff1f;
+      border: 1px solid #ffffff2b;
+      font-size: .95rem;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .info-card {
+      padding: 1rem;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 1.25rem;
+    }
+
+    .booking-card,
+    .contact-card {
+      padding: 1.4rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    label {
+      display: grid;
+      gap: .45rem;
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: .9rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .small {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .map-shell {
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    #map {
+      height: 460px;
+      width: 100%;
+    }
+
+    .route-status {
+      padding: .75rem 1rem;
+      margin: 1rem 0 0;
+      border-radius: var(--radius-md);
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .fare-card {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface2);
+    }
+
+    .fare-card.visible {
+      display: block;
+    }
+
+    .fare-card h3 {
+      margin: .1rem 0 .35rem;
+    }
+
+    .fare-price {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .fare-breakdown {
+      margin: 0;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-card a {
+      display: block;
+      padding: .85rem 0;
+      border-bottom: 1px solid var(--divider);
+      font-weight: 700;
+    }
+
+    .contact-card a:last-child {
+      border-bottom: 0;
+    }
+
+    .reviews-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .review-card {
+      padding: 1.3rem;
+    }
+
+    .stars {
+      color: var(--accent);
+      letter-spacing: .2em;
+      margin-bottom: .75rem;
+    }
+
+    .footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--divider);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      gap: 1rem;
+    }
+
+    .footer h4 {
+      margin-bottom: .75rem;
+    }
+
+    .footer a {
+      display: block;
+      margin: .35rem 0;
+      color: var(--muted);
+    }
+
+    .footer-bottom {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--divider);
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    .pac-container {
+      z-index: 10000;
+      font-family: var(--body);
+    }
+
+    @media (max-width:980px) {
+
+      .hero-grid,
+      .about-grid,
+      .booking-layout,
+      .contact-grid,
+      .footer-grid,
+      .services-grid,
+      .reviews-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        top: calc(100% + .5rem);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .nav.open {
+        display: grid;
+      }
+
+      .menu-toggle {
+        display: grid;
+      }
+
+      .header-actions .quick-call {
+        display: none;
+      }
+
+      .feature-list,
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width:981px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+
+    @media (max-width:640px) {
+      .container {
+        width: min(calc(100% - 1.25rem), var(--content));
+      }
+
+      .feature-list,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .panel,
+      .service-card,
+      .review-card,
+      .booking-card,
+      .contact-card,
+      .info-card {
+        padding: 1rem;
+      }
+
+      .about-visual {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Priority Chauffers home">
+        <span class="brand-mark" aria-hidden="true">🚕</span>
+        <span class="brand-copy"><strong>Priority Chauffers</strong><span>Taxi & Private Hire</span></span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Primary navigation">
+        <a class="active" href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a
+          href="#booking">Book</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions"><button class="theme-toggle" type="button" data-theme-toggle
+          aria-label="Switch theme">◐</button><a class="quick-call" href="tel:02000000000">Call 020 0000 0000</a><button
+          class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+          aria-label="Open menu">☰</button></div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Reliable • Safe • Professional</p>
+          <h1>Your local taxi and airport transfer service.</h1>
+          <p class="lead">Fast local journeys, pre-booked private hire, airport runs and business travel across London
+            with simple booking and direct contact.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#booking">Book now</a><a class="btn btn-secondary"
+              href="https://wa.me/447000000000" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+        </div>
+        <aside class="panel">
+          <h2>Why travel with Priority Chauffers</h2>
+          <p class="lead">Dependable private hire service for everyday travel, special bookings and airport transfers.
+          </p>
+          <div class="stats">
+            <div class="stat"><strong>24/7</strong><span>Booking availability</span></div>
+            <div class="stat"><strong>On time</strong><span>Scheduled pickups</span></div>
+            <div class="stat"><strong>Local & airport</strong><span>Flexible journey types</span></div>
+            <div class="stat"><strong>Easy booking</strong><span>Google address suggestions</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2>Travel options for every journey</h2>
+          </div>
+          <p class="lead">From quick local trips to longer pre-booked transfers, Priority Chauffers keeps travel
+            straightforward and dependable.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">🚖</div>
+            <h3>Local journeys</h3>
+            <p>Quick and reliable transport for shopping, appointments, school runs and evenings out.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">✈️</div>
+            <h3>Airport transfers</h3>
+            <p>Pre-booked drop-offs and pickups for major London airports with room for luggage.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">💼</div>
+            <h3>Corporate travel</h3>
+            <p>Professional transport for meetings, client pickups and scheduled business travel.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🗓️</div>
+            <h3>Advance bookings</h3>
+            <p>Reserve your journey ahead of time with clear pickup details and travel notes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual">
+          <div>
+            <p class="eyebrow" style="background:#ffffff1f;color:#fff">Serving London</p>
+            <h2 style="max-width:12ch">Professional private hire with a local, dependable feel.</h2>
+          </div>
+          <div class="badge-stack"><span class="badge">Airport transfers</span><span class="badge">Business
+              travel</span><span class="badge">24/7 service</span><span class="badge">Pre-booked journeys</span></div>
+        </div>
+        <div>
+          <p class="eyebrow">About us</p>
+          <h2>Trusted travel when it matters most</h2>
+          <p class="lead">Priority Chauffers offers friendly, punctual and professional taxi and private hire journeys
+            for customers who want a straightforward service they can rely on.</p>
+          <div class="feature-list">
+            <article class="info-card">
+              <h3>Professional drivers</h3>
+              <p>Courteous service with a focus on comfort, safety and punctuality.</p>
+            </article>
+            <article class="info-card">
+              <h3>Simple contact</h3>
+              <p>Book by phone, WhatsApp or the online booking form.</p>
+            </article>
+            <article class="info-card">
+              <h3>Flexible journeys</h3>
+              <p>Ideal for local travel, stations, airports and planned bookings.</p>
+            </article>
+            <article class="info-card">
+              <h3>Clear booking</h3>
+              <p>Choose addresses, travel time and passenger details in one place.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="booking">
+      <div class="container booking-layout">
+        <div class="booking-card">
+          <p class="eyebrow">Booking</p>
+          <h2>Book your journey</h2>
+          <p class="lead">Start typing your pickup and drop-off addresses, then choose the correct full address from
+            Google’s suggestions.</p>
+          <form id="booking-form">
+            <div class="form-grid"><label for="full-name">Full name (Required)<input id="full-name" name="full-name"
+                  type="text" required autocomplete="name"></label><label for="phone">Phone number (Required)<input
+                  id="phone" name="phone" type="tel" required autocomplete="tel"></label></div>
+            <div class="form-grid"><label for="pickup-address">Pickup address (Required)<input id="pickup-address"
+                  name="pickup-address" type="text" required placeholder="Enter pickup address"
+                  autocomplete="off"></label><label for="dropoff-address">Drop-off address (Required)<input
+                  id="dropoff-address" name="dropoff-address" type="text" required placeholder="Enter drop-off address"
+                  autocomplete="off"></label></div>
+            <div class="form-grid"><label for="journey-date">Date (Required)<input id="journey-date" name="journey-date"
+                  type="date" required></label><label for="journey-time">Time (Required)<input id="journey-time"
+                  name="journey-time" type="time" required></label></div>
+            <div class="form-grid"><label for="service-type">Journey type<select id="service-type" name="service-type">
+                  <option>Local journey</option>
+                  <option>Airport transfer</option>
+                  <option>Corporate travel</option>
+                  <option>Pre-booked journey</option>
+                </select></label><label for="passengers">Passengers<select id="passengers" name="passengers">
+                  <option>1 passenger</option>
+                  <option>2 passengers</option>
+                  <option>3 passengers</option>
+                  <option>4 passengers</option>
+                  <option>5+ passengers</option>
+                </select></label></div><label for="notes">Extra Notes<textarea id="notes"
+                name="notes"></textarea></label>
+            <p class="small" id="booking-message" aria-live="polite">Select both addresses from Google’s suggestions
+              before sending.</p>
+            <div class="cta-row"><button class="btn btn-accent" type="submit">Send booking request</button><a
+                class="btn btn-secondary" href="tel:02000000000">Call instead</a></div>
+          </form>
+        </div>
+        <div class="contact-card">
+          <p class="eyebrow">Journey map</p>
+          <h2>Route preview</h2>
+          <p class="lead">Choose both addresses to display the driving route and estimated price.</p><a
+            href="tel:02000000000">020 0000 0000</a><a href="https://wa.me/447000000000" target="_blank"
+            rel="noopener noreferrer">07000 000000 on WhatsApp</a><a
+            href="mailto:info@abccars.co.uk">info@abccars.co.uk</a>
+          <p class="route-status" id="route-status">Waiting for pickup and drop-off addresses.</p>
+          <div class="fare-card" id="fare-card" aria-live="polite">
+            <h3>Estimated journey price</h3>
+            <div class="fare-price" id="fare-price"></div>
+            <p class="fare-breakdown" id="fare-breakdown"></p>
+          </div>
+          <div class="map-shell" style="margin-top:1rem">
+            <div id="map" aria-label="Journey map"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Reviews</p>
+            <h2>What customers say</h2>
+          </div>
+        </div>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>Excellent service, polite driver and a clean car. Booking was quick and straightforward.</p><strong>Sarah
+              M.</strong>
+          </article>
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>Airport transfer was on time and stress-free. Good communication from start to finish.</p><strong>James
+              T.</strong>
+          </article>
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>Reliable local journeys and easy contact by phone or WhatsApp. Would use again.</p><strong>Aisha
+              K.</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Ready to book?</h2>
+          <p class="lead">Call, message or send your booking request online for your next journey.</p>
+        </div>
+        <div class="contact-card"><a href="tel:02000000000">Call: 020 0000 0000</a><a href="https://wa.me/447000000000"
+            target="_blank" rel="noopener noreferrer">WhatsApp: 07000 000000</a><a
+            href="mailto:info@abccars.co.uk">Email: info@abccars.co.uk</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand"><span class="brand-mark">🚕</span><span class="brand-copy"><strong>Priority
+              Chauffers</strong><span>Taxi & Private Hire</span></span></div>
+        <p class="small">Local journeys, airport transfers and pre-booked private hire across London.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4><a href="#services">Services</a><a href="#about">About</a><a href="#booking">Book</a><a
+          href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Opening hours</h4>
+        <p class="small">Available 24/7 for local and pre-booked journeys.</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">© 2026 Priority Chauffers. All rights reserved.</div>
+  </footer>
+  <script>
+    const nav = document.getElementById('site-nav');
+    const menuToggle = document.querySelector('.menu-toggle');
+    menuToggle?.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    }));
+
+    const root = document.documentElement;
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    root.setAttribute('data-theme', theme);
+    themeToggle?.addEventListener('click', () => {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', theme);
+    });
+
+    let map;
+    let directionsService;
+    let directionsRenderer;
+    let pickupPlace = null;
+    let dropoffPlace = null;
+
+    function hideFare() {
+      document.getElementById('fare-card').classList.remove('visible');
+      document.getElementById('fare-price').textContent = '';
+      document.getElementById('fare-breakdown').textContent = '';
+    }
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 51.5072, lng: -0.1276 },
+        zoom: 11,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false
+      });
+
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        map,
+        suppressMarkers: false,
+        polylineOptions: {
+          strokeColor: '#c7942f',
+          strokeOpacity: .95,
+          strokeWeight: 6
+        }
+      });
+
+      const options = {
+        fields: ['place_id', 'formatted_address', 'geometry', 'name', 'types'],
+        componentRestrictions: { country: 'gb' }
+      };
+
+      const pickupAutocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('pickup-address'),
+        options
+      );
+
+      const dropoffAutocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('dropoff-address'),
+        options
+      );
+
+      pickupAutocomplete.addListener('place_changed', () => {
+        pickupPlace = pickupAutocomplete.getPlace();
+        hideFare();
+        updateRoute();
+      });
+
+      dropoffAutocomplete.addListener('place_changed', () => {
+        dropoffPlace = dropoffAutocomplete.getPlace();
+        hideFare();
+        updateRoute();
+      });
+    }
+
+    function updateRoute() {
+      const status = document.getElementById('route-status');
+      hideFare();
+
+      if (!pickupPlace?.geometry?.location || !dropoffPlace?.geometry?.location) {
+        status.textContent = 'Select both addresses to display the route.';
+        return;
+      }
+
+      directionsService.route({
+        origin: pickupPlace.geometry.location,
+        destination: dropoffPlace.geometry.location,
+        travelMode: google.maps.TravelMode.DRIVING
+      }, (result, requestStatus) => {
+        if (requestStatus !== 'OK') {
+          status.textContent = 'The route could not be loaded. Please check both addresses.';
+          hideFare();
+          return;
+        }
+
+        directionsRenderer.setDirections(result);
+        const leg = result.routes[0].legs[0];
+        const distanceMiles = leg.distance.value / 1609.344;
+        const billedMiles = Math.ceil(distanceMiles);
+        const fare = distanceMiles <= 2 ? 7 : 7 + (billedMiles - 2) * 3;
+
+        status.textContent = `${leg.distance.text} • approximately ${leg.duration.text}`;
+        document.getElementById('fare-price').textContent = `£${fare.toFixed(2)}`;
+        document.getElementById('fare-breakdown').textContent = `Estimated distance: ${distanceMiles.toFixed(1)} miles.`;
+        document.getElementById('fare-card').classList.add('visible');
+      });
+    }
+
+    document.getElementById('booking-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const message = document.getElementById('booking-message');
+
+      if (!pickupPlace?.place_id || !dropoffPlace?.place_id) {
+        message.textContent = 'Please select both addresses from the Google suggestions before sending your request.';
+        return;
+      }
+
+      message.textContent = 'Booking request received. We will contact you to confirm the journey.';
+    });
+  </script>
+  <!-- Replace YOUR_GOOGLE_MAPS_API_KEY with your restricted Google Maps API key. -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmsFXaasO9udKg1aNT1QpCO7QMxm3aD0c&libraries=places&callback=initMap"></script>
+</body>
+
+</html>
